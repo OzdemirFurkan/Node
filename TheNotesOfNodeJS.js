@@ -91,7 +91,7 @@ promiseDelay(1)
 */
 
 // Node JS filesystem module fs
-var fs = require('fs');
+/*var fs = require('fs');
 var { promisify } = require('util');
 
 var writeFile = promisify(fs.writeFile);
@@ -99,3 +99,24 @@ var writeFile = promisify(fs.writeFile);
 writeFile('sample.txt','This is a sample')
     .then(() => console.log('File successfully created'))
     .catch((error) => console.log('error creating file'));
+    */
+
+
+//ASYNC FUNC
+
+var fs = require('fs');
+var { promisify } = require('util');
+var writeFile = promisify(fs.writeFile);
+var fs = promisify(fs.unLink);
+var fs = promisify(fs.readdir);
+var beep = () => process.stdout.write("\x07");
+var delay = (seconds) => new Promise((resolves) => {
+    setTimeout(resolves,seconds*1000)
+})
+
+async function start(){
+    var files = await readdir(__dirname);
+    console.log(files);
+}
+
+start();
